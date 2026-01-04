@@ -6,7 +6,7 @@ A high-throughput, non-blocking WhatsApp notification service built with **Golan
 Designed for scalability and reliability, it features **Graceful Shutdown** to ensure zero data loss during server restarts and implements **Round-Robin Session Rotation** for load balancing across multiple WhatsApp accounts.
 
 
-## 🏗 Architecture
+## Architecture
 
 The system uses an **In-Memory Event Driven** architecture. HTTP requests are immediately acknowledged and pushed into a buffered channel. Background workers (Goroutines) pick up jobs from this channel and execute the heavy lifting (sending HTTP requests to WAHA).
 
@@ -49,7 +49,7 @@ whatsapp_microservices/
 
 ```
 
-## 🛠 Prerequisites
+## Prerequisites
 
 * **Go** (version 1.18+)
 * **WAHA (WhatsApp HTTP API)** running locally or on a server.
@@ -57,7 +57,7 @@ whatsapp_microservices/
 
 
 
-## 🚀 Installation & Setup
+## Installation & Setup
 
 1. **Clone the repository**
 ```bash
@@ -97,7 +97,7 @@ go run cmd/server/main.go
 
 
 
-## 📡 API Documentation
+## API Documentation
 
 ### Send Message
 
@@ -140,7 +140,7 @@ Sends a message to the processing queue.
 
 *Status Code: `400 Bad Request*`
 
-## 📈 Performance Strategy
+## Performance Strategy
 
 This service is optimized for high concurrency:
 
@@ -148,6 +148,6 @@ This service is optimized for high concurrency:
 2. **Concurrency**: Spawns **50** (configurable) concurrent workers. This means 50 messages are processed in parallel every millisecond.
 3. **No I/O Blocking**: The HTTP handler does not wait for the 3rd party API (WAHA) to respond.
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
